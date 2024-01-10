@@ -16,7 +16,7 @@ public class MainInterface extends JFrame implements KeyListener {
     Hero hero = Hero.getInstance();
     GameRender panel = new GameRender(dungeon,hero);
 
-    InputManager inputManager = InputManager.getInstance();
+    InputManager inputManager = InputManager.getInstance(hero);
 
     public MainInterface() throws HeadlessException {
         super();
@@ -29,8 +29,7 @@ public class MainInterface extends JFrame implements KeyListener {
         ActionListener animationTimer=new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                hero.setWalking(inputManager.isOrientationTrue());
-                hero.moveIfPossible(1,dungeon);
+                hero.moveIfPossible(6,dungeon);
                 repaint();
             }
         };
@@ -48,43 +47,11 @@ public class MainInterface extends JFrame implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()){
-            case KeyEvent.VK_UP:
-                System.out.println("Up");
-                inputManager.setOrientation(Orientation.UP);
-                hero.setOrientation(Orientation.UP);
-                hero.setWalking(true);
-                break;
-            case KeyEvent.VK_DOWN:
-                System.out.println("Down");
-                inputManager.setOrientation(Orientation.DOWN);
-                hero.setOrientation(Orientation.DOWN);
-                hero.setWalking(true);
-                break;
-            case KeyEvent.VK_LEFT:
-                System.out.println("Left");
-                inputManager.setOrientation(Orientation.LEFT);
-                hero.setOrientation(Orientation.LEFT);
-                hero.setWalking(true);
-                break;
-            case KeyEvent.VK_RIGHT:
-                System.out.println("Right");
-                inputManager.setOrientation(Orientation.RIGHT);
-                hero.setOrientation(Orientation.RIGHT);
-                hero.setWalking(true);
-                break;
-        }
-        //this.repaint();
+        inputManager.keyPressed(e);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        switch (e.getKeyCode()){
-            case KeyEvent.VK_UP:    inputManager.resetOrientation(Orientation.UP);      break;
-            case KeyEvent.VK_DOWN:  inputManager.resetOrientation(Orientation.DOWN);    break;
-            case KeyEvent.VK_LEFT:  inputManager.resetOrientation(Orientation.LEFT);    break;
-            case KeyEvent.VK_RIGHT: inputManager.resetOrientation(Orientation.RIGHT);   break;
-        }
-
+        inputManager.keyReleased(e);
     }
 }
