@@ -34,8 +34,19 @@ public final class Hero extends DynamicThings{
         this.orientation = orientation;
     }
 
-    public void moveIfPossible(double dx, double dy, Dungeon dungeon){
+    public void moveIfPossible(double d, Dungeon dungeon){
         boolean movePossible=true;
+        double dx = 0, dy = 0;
+
+        if(this.isWalking){
+            switch(this.orientation){
+                case LEFT  : dx = -d; dy = 0;  break;
+                case RIGHT : dx =  d; dy = 0;  break;
+                case UP    : dx =  0; dy = -d; break;
+                case DOWN  : dx =  0; dy =  d; break;
+            }
+        }
+
         this.getHitBox().move(dx,dy);
         for (Things things : dungeon.getRenderList()){
             if (things instanceof SolidThings){
