@@ -14,6 +14,7 @@ public class AnimatedThings extends SolidThings {
 
     @Override
     public void draw(Graphics g){
-
+        int index = (int) ((System.currentTimeMillis()/200)%4);
+        g.drawImage(image,(int)x,(int)y,(int)x+48,(int)y+48,index*48,0,(index+1)*48,48,null,null);
     }
 }

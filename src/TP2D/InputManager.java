@@ -6,17 +6,17 @@ public class InputManager {
     private static volatile InputManager instance = null;
     private boolean up = false, down = false, left = false, right = false;
 
-    Hero hero;
+    DynamicThings thingToMove;
 
-    private InputManager(Hero hero){
-        this.hero = hero;
+    private InputManager(DynamicThings thingToMove){
+        this.thingToMove = thingToMove;
     }
 
-    public final static InputManager getInstance(Hero hero){
+    public final static InputManager getInstance(DynamicThings thingToMove){
         if (InputManager.instance == null) {
             synchronized(InputManager.class) {
                 if (InputManager.instance == null) {
-                    InputManager.instance = new InputManager(hero);
+                    InputManager.instance = new InputManager(thingToMove);
                 }
             }
         }
@@ -32,8 +32,8 @@ public class InputManager {
             case RIGHT: right = true;   break;
         }
         
-        hero.setOrientation(o);
-        hero.setWalking(true);
+        thingToMove.setOrientation(o);
+        thingToMove.setWalking(true);
     }
 
     public void resetOrientation(Orientation o) {
@@ -48,7 +48,7 @@ public class InputManager {
         else if(down)   setOrientation(Orientation.DOWN);
         else if(left)   setOrientation(Orientation.LEFT);
         else if(right)  setOrientation(Orientation.RIGHT);
-        else hero.setWalking(false);
+        else thingToMove.setWalking(false);
     }
     
     public void keyPressed(KeyEvent e) {

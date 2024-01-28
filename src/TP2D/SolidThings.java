@@ -19,4 +19,10 @@ public class SolidThings extends Things {
     public HitBox getHitBox() {
         return hitBox;
     }
+
+    public void move(int dx, int dy){
+        this.x+=dx;
+        this.y+=dy;
+        this.hitBox.setPosition(this.x, this.y);
+    }
 }

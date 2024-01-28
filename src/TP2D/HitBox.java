@@ -35,8 +35,21 @@ public class HitBox {
         return y;
     }
 
+    public double getWidth() {
+        return width;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
     public void move(double dx, double dy){
         x=x+dx;
         y=y+dy;
+    }
+
+    public void setPosition(double x, double y){
+        this.x=x;
+        this.y=y;
     }
 }
