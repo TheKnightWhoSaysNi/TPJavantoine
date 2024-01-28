@@ -101,7 +101,7 @@ public class MainInterface extends JFrame implements KeyListener {
                 }
             }
 
-            if(text_step == 100 || text_step<4); // stop moving when game over 
+            if(text_step == 100 || text_step<4 && text_step != 0); // stop moving when game over 
             else inputManager.keyPressed(e);
         }
 
