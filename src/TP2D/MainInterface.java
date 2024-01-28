@@ -89,7 +89,7 @@ public class MainInterface extends JFrame implements KeyListener {
             levels[current_level].setText(text_step);
             text_step++;
         }
-        if(text_step == 4){
+        else if(text_step == 4){
             if(e.getKeyCode() == KeyEvent.VK_E){
                 levels[current_level].removeText();
                 text_step++;
@@ -101,7 +101,7 @@ public class MainInterface extends JFrame implements KeyListener {
                 }
             }
 
-            if(text_step == 100); // stop moving when game over 
+            if(text_step == 100 || text_step<4); // stop moving when game over 
             else inputManager.keyPressed(e);
         }
 
